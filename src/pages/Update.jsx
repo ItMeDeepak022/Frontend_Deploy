@@ -62,7 +62,7 @@ export default function Update() {
     }, [state])
 
 
-    console.log(state);
+     
 
     return (
         <>

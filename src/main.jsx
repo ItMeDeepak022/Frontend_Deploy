@@ -5,14 +5,25 @@ import Home from './pages/Home'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import Update from './pages/Update'
 import Login from './common/Login'
+import ProtectedRoute from './Protected'
 
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
+
       <Route path='/' element={<Login />} />
-      <Route path='/home' element={<Home />} />
-      <Route path='/update' element={<Update />} />
+
+      <Route
+        path='/home'
+        element={<ProtectedRoute> <Home /> </ProtectedRoute> }
+      />
+
+      <Route
+        path='/update'
+        element={<ProtectedRoute> <Update /> </ProtectedRoute>}
+          
+      />
 
 
 
