@@ -71,9 +71,9 @@ export default function Login() {
         < >
             <ToastContainer />
             <div className="min-h-screen flex items-center justify-center bg-gray-100">
-                <h1 className='absolute text-4xl text-orange-700 font-semibold top-10'>Welcome to the Enquiry Management System</h1>
+                <h1 className='absolute md:text-4xl text-[25px] text-orange-700 font-semibold md:top-10 top-0 md:block hidden'>Welcome to the Enquiry Management System</h1>
 
-                <div className="bg-white p-8 rounded-lg shadow-md w-[400px]  max-w-md">
+                <div className="bg-white p-8 rounded-lg shadow-md w-[400px]  max-w-md m-3">
                     <h2 className="text-3xl font-bold mb-6 text-center">
                         {isLogin ? "Welcome Back 👋" : "Create an Account"}
                     </h2>
