@@ -29,12 +29,12 @@ export default function Home() {
     mobileNumber: formValue.mobileNumber.value
   };
    
-    axios.post(`${url}/user/create`,data)
+    axios.post(`https://backend-deploy-bay-five.vercel.app/admin/user/create`,data)
       .then((res) => res.data)
       .then((finalRes) => {
           if(finalRes.status){
             toast.success(finalRes.message)
-            formValue.reset();
+             e.target.reset()
              viewData()
             
           }
@@ -50,7 +50,7 @@ export default function Home() {
   let [view, setview] = useState([])
 
   let viewData = () => {
-    axios.get(`${url}/user/view`)
+    axios.get(`https://backend-deploy-bay-five.vercel.app/admin/user/view`)
       .then((res) => res.data)
       .then((finalRes) => {
         setview(finalRes.Resobj);
@@ -69,7 +69,7 @@ export default function Home() {
     const value=confirm("Are you sure to delete..")
       if(value) 
       {
-       axios.delete(`${url}/user/delete/${ids}`)
+       axios.delete(`https://backend-deploy-bay-five.vercel.app/admin/user/delete/${ids}`)
       .then((res) => res.data)
       .then((finalRes) => {
          
@@ -86,9 +86,10 @@ export default function Home() {
 
   return (
     <>
+     
     <Header/>
       <div className="min-h-screen bg-gray-100 px-8 py-6">
-        <ToastContainer/>
+        
         
         <div className="max-w-7xl mx-auto">
           <h1 className="lg:text-4xl text-[25px] lg:text-left text-center font-bold text-[green] lg:mb-5 mb-4 ">Enquiry Management</h1>

@@ -33,7 +33,7 @@ export default function Update() {
     let updateData = (e) => {
 
         e.preventDefault()
-        axios.put(`${url}/user/update`,form)
+        axios.put(`https://backend-deploy-bay-five.vercel.app/admin/user/update`,form)
             .then((res) => res.data)
             .then((finalRes) => {
                 if (finalRes.status) {

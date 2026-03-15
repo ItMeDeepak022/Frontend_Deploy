@@ -22,7 +22,7 @@ export default function Login() {
         {isLogin ?  
             
             
-            axios.post("http://localhost:5000/admin/login", obj)
+            axios.post("https://backend-deploy-bay-five.vercel.app/admin/login", obj)
             .then((res => res.data))
             .then((finalRes) => {
                 console.log(finalRes);
@@ -44,7 +44,7 @@ export default function Login() {
 
             : 
             
-             axios.post("http://localhost:5000/admin/registration", obj)
+             axios.post("https://backend-deploy-bay-five.vercel.app/admin/registration", obj)
             .then((res => res.data))
             .then((finalRes) => {
                 console.log(finalRes);
