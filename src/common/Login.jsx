@@ -6,63 +6,70 @@ import { toast, ToastContainer } from 'react-toastify';
 export default function Login() {
 
     const [isLogin, setIsLogin] = useState(true);
+    const [loding, setloading] = useState(false)
 
     let navigate = useNavigate()
 
     let loginDone = (e) => {
         e.preventDefault()
+        setloading(true)
         let obj = {
             name: e.target.name.value || '',
             email: e.target.email.value,
             password: e.target.password.value
         }
 
-        
 
-        {isLogin ?  
-            
-            
-            axios.post("https://backend-deploy-bay-five.vercel.app/admin/login", obj)
-            .then((res => res.data))
-            .then((finalRes) => {
-                console.log(finalRes);
-                if (finalRes.status) {
-                    // localStorage.setItem( key    ,  value )
-                                        //   arg1   ,  ag2
-                    localStorage.setItem("token", finalRes.token);
-                    localStorage.setItem('firstletter',finalRes.Fletter)
-                    toast.success(finalRes.message)
-                    e.target.reset()
-                    setTimeout(() => {
-                        navigate('/home')
-                    },1200);
-                }
-                else {
-                    toast.error(finalRes.message)
-                }
-            })
 
-            : 
-            
-             axios.post("https://backend-deploy-bay-five.vercel.app/admin/registration", obj)
-            .then((res => res.data))
-            .then((finalRes) => {
-                console.log(finalRes);
-                if (finalRes.status) {
-                    // localStorage.setItem( key    ,  value )
-                                        //   arg1   ,  ag2
-                    localStorage.setItem("token", finalRes.token);
-                    toast.success(finalRes.message)
-                    e.target.reset()
-                }
-                else {
-                    toast.error(finalRes.message)
-                }
-            })
-        
+        {
+            isLogin ?
+
+
+                axios.post("https://backend-deploy-bay-five.vercel.app/admin/login", obj)
+                    .then((res => res.data))
+                    .then((finalRes) => {
+                        // console.log(finalRes);
+
+                        if (finalRes.status) {
+                            // localStorage.setItem( key    ,  value )
+                            //   arg1   ,  ag2
+                            localStorage.setItem("token", finalRes.token);
+                            localStorage.setItem('firstletter', finalRes.Fletter)
+                            setloading(false)
+                            toast.success(finalRes.message)
+                            e.target.reset()
+                            setTimeout(() => {
+                                navigate('/home')
+                            }, 1200);
+                        }
+                        else {
+                            toast.error(finalRes.message)
+                            setloading(false)
+                        }
+                    })
+
+                :
+
+                axios.post("https://backend-deploy-bay-five.vercel.app/admin/registration", obj)
+                    .then((res => res.data))
+                    .then((finalRes) => {
+                        // console.log(finalRes);
+                        if (finalRes.status) {
+                            // localStorage.setItem( key    ,  value )
+                            //   arg1   ,  ag2
+                            localStorage.setItem("token", finalRes.token);
+                            setloading(false)
+                            toast.success(finalRes.message)
+                            e.target.reset()
+                        }
+                        else {
+                            toast.error(finalRes.message)
+                        }
+                    })
+
         }
 
-        
+
 
     }
 
@@ -123,7 +130,42 @@ export default function Login() {
                             type="submit"
                             className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
                         >
-                            {isLogin ? "Login" : "Sign Up"}
+                            {isLogin ?
+                                <div className='flex items-center justify-center gap-5' >
+                                    <p className='text-white text-[18px]'>Login</p>
+
+                                    {
+                                        loding && (
+                                            <div class="flex items-center justify-center">
+                                                <div class="w-7 h-7 rounded-full animate-spin
+                    border-4 border-solid border-white border-t-transparent"></div>
+
+                                            </div>
+                                        )
+
+                                    }
+
+                                </div>
+
+                                :
+                                <div className='flex items-center justify-center gap-5' >
+                                    <p className='text-white text-[18px]'>Sign Up</p>
+
+                                    {
+                                        loding && (
+                                            <div class="flex items-center justify-center">
+                                                <div class="w-7 h-7 rounded-full animate-spin
+                    border-4 border-solid border-white border-t-transparent"></div>
+
+                                            </div>
+                                        )
+
+                                    }
+
+                                </div>
+
+                            }
+
                         </button>
                     </form>
                     <div className="mt-4 text-center">

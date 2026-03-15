@@ -46,7 +46,7 @@ export default function Update() {
                 }
 
             })
-        console.log(form);
+        // console.log(form);
 
     }
     useEffect(() => {

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react'
 import { LuLogOut } from "react-icons/lu";
 import { MdDelete } from 'react-icons/md';
@@ -8,6 +9,8 @@ import { toast, ToastContainer } from 'react-toastify';
 export default function Header() {
 
     let data = localStorage.getItem('firstletter')
+
+
     let value = data.charAt(0)
 
 
@@ -15,12 +18,46 @@ export default function Header() {
     let LogOut = () => {
 
         localStorage.removeItem('token')
+        localStorage.removeItem('firstletter')
+
+        toast.success("Logout Successfully")
         setTimeout(() => {
             navigate('/')
-        }, 600);
-        toast.error("Logout Successfully")
+        },700);
+        
     }
 
+    let IsDeleteAccoutnt = () => {
+        let token = localStorage.getItem("token");
+        let confirmDelete = window.confirm("Are you sure to delete Account");
+
+        if (confirmDelete) {
+            axios.post(
+                "https://backend-deploy-bay-five.vercel.app/admin/delete",
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            )
+                .then((res) => res.data)
+                .then((finalRes) => {
+
+                    if (finalRes.status) {
+                        toast.success(finalRes.message);
+                        setTimeout(() => {
+                            navigate('/')
+                        }, 600);
+                    }
+                     else {
+                        toast.error(finalRes.message);
+                    }
+
+                });
+        }
+
+ }
 
     return (
 
@@ -42,7 +79,7 @@ export default function Header() {
                  font-semibold rounded-lg transition duration-300 ease-in-out 
                  transform hover:scale-105 hover:text-red-500" />
 
-                        <MdDelete className=" text-3xl text-red-500
+                        <MdDelete onClick={IsDeleteAccoutnt} className=" text-3xl text-red-500
                  font-semibold rounded-lg transition duration-300 ease-in-out 
                  transform hover:scale-105 hover:text-red-600" />
 
@@ -60,7 +97,7 @@ export default function Header() {
                  font-semibold rounded-lg transition duration-300 ease-in-out 
                  transform hover:scale-105 hover:text-red-900" />
 
-                        <MdDelete className=" text-3xl text-red-600
+                        <MdDelete onClick={IsDeleteAccoutnt} className=" text-3xl text-red-600
                  font-semibold rounded-lg transition duration-300 ease-in-out 
                  transform hover:scale-105 hover:text-red-800" />
 
