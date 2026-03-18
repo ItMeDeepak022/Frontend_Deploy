@@ -6,6 +6,8 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import Update from './pages/Update'
 import Login from './common/Login'
 import ProtectedRoute from './Protected'
+import ForgetPass from './pages/ForgetPass'
+import ChangePass from './pages/ChangePass'
 
 
 createRoot(document.getElementById('root')).render(
@@ -24,6 +26,17 @@ createRoot(document.getElementById('root')).render(
         element={<ProtectedRoute> <Update /> </ProtectedRoute>}
           
       />
+      <Route
+        path='/forget-password'
+        element={<ForgetPass/>}
+          
+      />
+      <Route
+        path='/change-password'
+        element={<ChangePass/>}
+          
+      />
+
 
 
 
