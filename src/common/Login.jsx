@@ -64,6 +64,7 @@ export default function Login() {
                         }
                         else {
                             toast.error(finalRes.message)
+                            setloading(false)
                         }
                     })
 
