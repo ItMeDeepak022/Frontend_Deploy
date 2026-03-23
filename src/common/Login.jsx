@@ -144,7 +144,7 @@ export default function Login() {
                                     type="email"
                                     name="email"
                                     placeholder="Enter your email"
-                                    className="w-full mt-1 px-3 md:px-4 py-2 rounded-lg bg-[#E8F0FE] border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500  placeholder-red-700 text-sm"
+                                    className="w-full mt-1 px-3 md:px-4 py-2 rounded-lg bg-[#E8F0FE] border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500  placeholder-black text-sm"
                                 />
                             </div>
 
